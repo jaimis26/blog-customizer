@@ -11,6 +11,7 @@ import {
 import { RadioGroup } from '@/ui/radio-group';
 import { Select } from '@/ui/select';
 import { useOutsideClickClose } from '@/ui/select/hooks/useOutsideClickClose';
+import { Separator } from '@/ui/separator';
 import { Text } from '@/ui/text';
 import { clsx } from 'clsx';
 import { useRef, useState } from 'react';
@@ -45,13 +46,9 @@ export const ArticleParamsForm = ({ onChange }: ArticleParamsFormProps): JSX.Ele
   });
 
   return (
-    <>
+    <div ref={asideRef}>
       <ArrowButton isOpen={isOpen} onClick={handleToggle} />
-
-      <aside
-        ref={asideRef}
-        className={clsx(styles.container, isOpen && styles.container_open)}
-      >
+      <aside className={clsx(styles.container, isOpen && styles.container_open)}>
         <form className={styles.form} onSubmit={onClickAside}>
           <Text size={31} weight={800} uppercase>
             Задайте параметры
@@ -90,6 +87,7 @@ export const ArticleParamsForm = ({ onChange }: ArticleParamsFormProps): JSX.Ele
               }));
             }}
           />
+          <Separator></Separator>
           <Select
             title={'цвет фона'}
             options={backgroundColors}
@@ -126,6 +124,6 @@ export const ArticleParamsForm = ({ onChange }: ArticleParamsFormProps): JSX.Ele
           </div>
         </form>
       </aside>
-    </>
+    </div>
   );
 };
